@@ -2,7 +2,7 @@ import React from 'react';
 import { DocsThemeConfig } from 'nextra-theme-docs';
 
 const config: DocsThemeConfig = {
-  logo: <span>DAOhaus User Guide</span>,
+  logo: <span>DAOhaus Developer Docs</span>,
   project: {
     link: 'https://github.com/HausDAO/',
   },
@@ -11,7 +11,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/HausDAO/',
   footer: {
-    text: 'DAOhaus User Guide',
+    text: 'DAOhaus Developer Docs',
   },
 };
 

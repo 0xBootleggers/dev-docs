@@ -1,0 +1,44 @@
+# `@daohaus/moloch-v3-legos`
+
+Code Legos are static javascript objects that contain metadata used by Form Builder and Tx-Builder. The metadata is used to render UI elements, create transactions and interact with external smart contracts.
+
+They allow you to create complex transactions and form UI.
+
+## Types of Code Legos
+
+- **[Form Legos](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/form.ts):** Instruct form builder to render forms.
+- **[Field Legos](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/fields.ts):** Instruct form builder to render fields inside forms.
+- **[Transaction Legos](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/tx.ts):** Provide the transaction schemas & prepare arguments for external smart contract calls.
+- **[Contract Legos](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/contracts.ts):** Provide the contract addresses and Application Binary Interfaces (ABIs) required for external smart contract calls.
+
+### [View on Github](https://github.com/HausDAO/monorepo/tree/develop/libs/form-builder)
+
+#### Related packages
+
+- [**TX-Builder**](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2F%40bootleggers%2Frk2OylYvh)
+- [**Moloch V3 Legos**](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2F%40bootleggers%2FHJRr1xFv3)
+- [**Moloch V3 Fields**](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2F%40bootleggers%2FSkJfkxKwh)
+
+### [View on NPM](https://www.npmjs.com/package/@daohaus/moloch-v3-legos)
+
+## Usage
+
+### Installation
+
+```bash
+yarn add @daohaus/moloch-v3-legos
+```
+
+Note: This package will most likely not be installed alone, instead will be added with you install [tx-builder](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2F%40bootleggers%2Frk2OylYvh) or [form-builder](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2F%40bootleggers%2FHyPeygYDn).
+
+### Examples
+
+**Here is a [tutorial on form and transaction building](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2FW8PN8eO3SDCG0GLE05cQnw).**
+
+[**How to make a contract lego**](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2FTKPWVJC2SfuwthmzTtrJIw)
+
+[**How to make a field lego**](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2FK0FZTvZDTGmwlPwsS0LnLw)
+
+[**How to make a transaction lego**](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2Fo54vqrecQQ-MR9nuhVUGOQ)
+
+[**How to make a form lego**](https://hackmd.io/@bootleggers/Skfd50_w3/https%3A%2F%2Fhackmd.io%2F2QAMVdBoQveC_I1brOGBvw)

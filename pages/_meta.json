@@ -1,5 +1,9 @@
 {
-  "index": "Welcome",
-  "summoner": "Summoner App",
-  "admin": "Admin App"
+  "index": "Introduction",
+  "quickstart": "Quickstart",
+  "sdk": "SDK",
+  "subgraphs": "Subgraphs",
+  "contracts": "Contracts",
+  "contribution": "Contribution",
+  "community": "Community Links"
 }
