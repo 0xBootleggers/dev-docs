@@ -41,10 +41,10 @@ If you are trying to query for data on Etheruem Mainnet or Gnosis Chain (and mor
 
 These hooks use [React Query](https://tanstack.com/query/v3/) so you will need to wrap your app in a `QueryClientProvider` as seen [here](https://tanstack.com/query/v3/docs/react/examples/react/basic).
 
-```jsx
+```tsx
 const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <HashRouter>
       <QueryClientProvider client={queryClient}>
@@ -61,7 +61,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 
 ##### How to get DAO data
 
-```jsx
+```tsx
 import { useDaoData, useDaoMember, useDaoProposals } from '@daohaus/moloch-v3-hooks';
 
 const { dao } = useDaoData({
@@ -83,7 +83,7 @@ const { proposals } = useDaoProposals({
 
 ##### How to refetch data
 
-```jsx
+```tsx
 import { useDaoData } from '@daohaus/moloch-v3-hooks';
 
 const { dao, refetch } = useDaoData({
@@ -98,7 +98,7 @@ const someAction = () => {
 
 ##### How to filter, sort, and paginate a list of proposals or members
 
-```jsx
+```tsx
 import { useDaoProposals } from '@daohaus/moloch-v3-hooks';
 
 const {
@@ -146,7 +146,7 @@ fetchNextPage();
 
 If you store your target DAO address and chain id in the `CurrentDaoContext` all of these hooks will not need you to pass the `daoId` and `chainId` to them.
 
-```jsx
+```tsx
 import { CurrentDaoProvider } from '@daohaus/moloch-v3-hooks';
 
 <CurrentDaoProvider
@@ -161,7 +161,7 @@ import { CurrentDaoProvider } from '@daohaus/moloch-v3-hooks';
 
 Then in a component you can use this hook:
 
-```jsx
+```tsx
 import { UseCurrentDao, useDaoData } from '@daohaus/moloch-v3-hooks';
 
 

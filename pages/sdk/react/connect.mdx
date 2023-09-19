@@ -44,7 +44,7 @@ NX_WALLET_CONNECT_ID=<some WC API key>
 
 ##### How to add to your application
 
-```jsx
+```tsx
 import { DHConnectProvider } from `@daohaus/connect`;
 
 ReactDOM.render(
@@ -58,12 +58,11 @@ ReactDOM.render(
     </BrowserRouter>
   </StrictMode>,
 document.getElementById('root')
-
 ```
 
 ##### How to add DAOHaus layout and nav
 
-```jsx
+```tsx
 import { HausLayout } from '@daohaus/daohaus-connect-feature';
 <HausLayout
   pathname={location.pathname}
@@ -76,7 +75,7 @@ import { HausLayout } from '@daohaus/daohaus-connect-feature';
 
 ##### How to make a connect button
 
-```jsx
+```tsx
 const { connectWallet } = useConnect();
 
 <Button onClick={connectWallet} sm type="button">
@@ -86,7 +85,7 @@ const { connectWallet } = useConnect();
 
 ##### How to get connected wallet data
 
-```jsx
+```tsx
 const { isConnected, address } = useConnect();
 
 ...
