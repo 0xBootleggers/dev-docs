@@ -1,41 +1,36 @@
 # @daohaus/moloch-v3-hooks
 
-The Moloch v3 Hooks package is a collection of React hooks you can use fetch and store data to use in components anywhere in your application, like:
+Moloch v3 Hooks is a collection of React hooks you can use to fetch and store data to use in components anywhere in your application, like:
 
 - Current DAO data (including proposals, members, safes, and DAO records)
 - Current connected address membership data
 - ERC-20 data
 
-## [View on Github](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-hooks)
+## [Github](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-hooks)
 
-### [Current DAO Context](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/contexts/CurrentDaoContext.tsx)
+- [Current DAO Context](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/contexts/CurrentDaoContext.tsx)
+- DAO Data
+  - [DAO Overview](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoData.tsx)
+  - [Proposal](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoProposal.tsx) and [Proposal Lists](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoProposals.tsx)
+  - [Member](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoMember.tsx) and [Member Lists](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoMembers.tsx)
+  - [DAO Records](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useConnectedMember.tsx)
+- [ERC20](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useConnectedMember.tsx)
+- Connected Address Data
+  - [Single DAO Membership](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useConnectedMember.tsx)
+  - [All DAO Memberships](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaosByUser.tsx)
+  - [Profile Data](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useProfile.tsx)
 
-### DAO Data
+## [NPM](https://www.npmjs.com/package/@daohaus/moloch-v3-hooks)
 
-- [DAO Overview](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoData.tsx)
-- [Proposal](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoProposal.tsx) and [Proposal Lists](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoProposals.tsx)
-- [Member](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoMember.tsx) and [Member Lists](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaoMembers.tsx)
-- [DAO Records](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useConnectedMember.tsx)
+## Usage
 
-### [ERC20](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useConnectedMember.tsx)
-
-### Connected Address Data
-
-- [Single DAO Membership](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useConnectedMember.tsx)
-- [All DAO Memberships](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useDaosByUser.tsx)
-- [Profile Data](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-hooks/src/hooks/useProfile.tsx)
-
-## [View on NPM](https://www.npmjs.com/package/@daohaus/moloch-v3-hooks)
-
-### Usage
-
-#### Installation
+### Installation
 
 ```bash
 yarn add @daohaus/moloch-v3-hooks
 ```
 
-#### Requirements
+### Requirements
 
 If you are trying to query for data on Etheruem Mainnet or Gnosis Chain (and more to come) you will need to provide an API key from The Graph. Learn how to get those keys [here](https://thegraph.com/docs/en/querying/managing-api-keys/) and [here](https://thegraph.com/studio/apikeys/).
 
@@ -57,9 +52,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 );
 ```
 
-#### Examples
+### Examples
 
-##### How to get DAO data
+**How to get DAO data**
 
 ```tsx
 import { useDaoData, useDaoMember, useDaoProposals } from '@daohaus/moloch-v3-hooks';
@@ -81,7 +76,7 @@ const { proposals } = useDaoProposals({
 });
 ```
 
-##### How to refetch data
+**How to refetch data**
 
 ```tsx
 import { useDaoData } from '@daohaus/moloch-v3-hooks';
@@ -96,7 +91,7 @@ const someAction = () => {
 };
 ```
 
-##### How to filter, sort, and paginate a list of proposals or members
+**How to filter, sort, and paginate a list of proposals or members**
 
 ```tsx
 import { useDaoProposals } from '@daohaus/moloch-v3-hooks';
@@ -142,7 +137,7 @@ fetchNextPage();
 // proposal variable will have the next page of proposals added to it
 ```
 
-##### How to store the current DAO data
+**How to store the current DAO data**
 
 If you store your target DAO address and chain id in the `CurrentDaoContext` all of these hooks will not need you to pass the `daoId` and `chainId` to them.
 

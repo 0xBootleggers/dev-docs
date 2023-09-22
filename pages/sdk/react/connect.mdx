@@ -1,30 +1,26 @@
 # @daohaus/connect
 
-**DAOhaus Connect** provides a drop-in component for handling wallet connection. It includes additional functionality such as notifying users of unsupported networks, switching networks, and displaying ENS data. It also includes a top-of-page navigation component and layout component to enable rapid application development. It is opinionated and composed with the following libraries:
+DAOhaus Connect provides a drop-in component for handling wallet connection. It includes additional functionality such as notifying users of unsupported networks, switching networks, and displaying ENS data. It also includes a top-of-page navigation component and layout component to enable rapid application development. It is opinionated and composed with the following libraries:
 
 - [Web3Modal and WalletConnect](https://web3modal.com/)
 - [React Router](https://reactrouter.com/en/main)
 
-## [View on Github](https://github.com/HausDAO/monorepo/tree/develop/libs/connect)
+## [Github](https://github.com/HausDAO/monorepo/tree/develop/libs/connect)
 
-### [Connect Context](https://github.com/HausDAO/monorepo/blob/develop/libs/connect/src/HausConnectContext.tsx)
+- [Connect Context](https://github.com/HausDAO/monorepo/blob/develop/libs/connect/src/HausConnectContext.tsx)
+- Components
+  - [Connect Button](https://github.com/HausDAO/monorepo/tree/develop/libs/connect/src/components)
+  - [Network Button](https://github.com/HausDAO/monorepo/tree/develop/libs/connect/src/components/NetworkButton)
+  - [DAOHaus Layout](https://github.com/HausDAO/monorepo/tree/develop/libs/connect/src/components/DHLayout)
+  - [DAOHaus Nav](https://github.com/HausDAO/monorepo/tree/develop/libs/connect/src/components/DaoHausNav)
+- Related Lower-Level Components
+  - [@daohaus/connect-context](https://github.com/HausDAO/monorepo/tree/develop/libs/connect-context)
 
-### Components
+## [NPM](https://www.npmjs.com/package/@daohaus/connect)
 
-- [Connect Button](https://github.com/HausDAO/monorepo/tree/develop/libs/connect/src/components)
-- [Network Button](https://github.com/HausDAO/monorepo/tree/develop/libs/connect/src/components/NetworkButton)
-- [DAOHaus Layout](https://github.com/HausDAO/monorepo/tree/develop/libs/connect/src/components/DHLayout)
-- [DAOHaus Nav](https://github.com/HausDAO/monorepo/tree/develop/libs/connect/src/components/DaoHausNav)
+## Usage
 
-#### Related Lower-Level Components
-
-[@daohaus/connect-context](https://github.com/HausDAO/monorepo/tree/develop/libs/connect-context)
-
-## [View on NPM](https://www.npmjs.com/package/@daohaus/connect)
-
-### Usage
-
-#### Installation
+### Installation
 
 ```bash
 yarn add @daohaus/connect
@@ -32,20 +28,20 @@ yarn add @daohaus/connect
 
 **Note**: This will also install `@daohaus/connect-context`
 
-#### Requirements
+### Requirements
 
-You will need to provide a WalletConnect v2 API key as an `env` variable at `NX_WALLET_CONNECT_ID`. You can get the key from [WalletConnect](https://docs.walletconnect.com/2.0/api/auth/overview#key-features)
+You will need to provide a WalletConnect v2 API key as an `env` variable at `NX_WALLET_CONNECT_ID`. You can get the key from [WalletConnect](https://docs.walletconnect.com/2.0/api/auth/overview#key-features).
 
 ```
 NX_WALLET_CONNECT_ID=<some WC API key>
 ```
 
-#### Examples
+### Examples
 
-##### How to add to your application
+**How to add to your application**
 
 ```tsx
-import { DHConnectProvider } from `@daohaus/connect`;
+import { DHConnectProvider } from '@daohaus/connect';
 
 ReactDOM.render(
   <StrictMode>
@@ -60,7 +56,7 @@ ReactDOM.render(
 document.getElementById('root')
 ```
 
-##### How to add DAOHaus layout and nav
+**How to add DAOHaus layout and nav**
 
 ```tsx
 import { HausLayout } from '@daohaus/daohaus-connect-feature';
@@ -74,7 +70,7 @@ import { HausLayout } from '@daohaus/daohaus-connect-feature';
 </HausLayout>;
 ```
 
-##### How to make a connect button
+**How to make a connect button**
 
 ```tsx
 const { connectWallet } = useConnect();
@@ -84,7 +80,7 @@ const { connectWallet } = useConnect();
 </Button>;
 ```
 
-##### How to get connected wallet data
+**How to get connected wallet data**
 
 ```tsx
 const { isConnected, address } = useConnect();
@@ -99,7 +95,7 @@ if (!isConnected) {
 };
 ```
 
-##### What else can you do with useConnect?
+**What else can you do with useConnect?**
 
 The `useConnect` hook includes the following variables and functions:
 

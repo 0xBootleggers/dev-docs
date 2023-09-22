@@ -1,34 +1,31 @@
 # @daohaus/tx-builder
 
-This feature allows your React application to easily make transactions with all the JavaScript app lifecycle functions baked-in to trigger error and success messages, along with other cool features. Transactions are at the core of our platform, so we designed this library to provide helper utilities for this purpose.
+Tx builder allows your React application to easily make transactions with JavaScript lifecycle functions baked-in to trigger error and success messages, along with other cool features. Transactions are at the core of our platform, so we designed this library to provide helper utilities for this purpose.
 
 The core element is a React Context that bundles together generic transaction calls with subgraph polling within the function. This provides lifecycle methods that we can use to control UI based on synchronized events from within the React component.
 
 The package uses [viem](https://viem.sh/).
 
-## [View on Github](https://github.com/HausDAO/monorepo/tree/develop/libs/tx-builder)
+## [Github](https://github.com/HausDAO/monorepo/tree/develop/libs/tx-builder)
 
-### [TX Builder Context](https://github.com/HausDAO/monorepo/blob/develop/libs/tx-builder/src/TXBuilder.tsx)
+- [TX Builder Context](https://github.com/HausDAO/monorepo/blob/develop/libs/tx-builder/src/TXBuilder.tsx)
+- [Utilities](https://github.com/HausDAO/monorepo/tree/develop/libs/tx-builder/src/utils)
+- Related Packages
+  - [moloch-v3-legos](/sdk/react/moloch-v3-legos)
+  - [form-builder](/sdk/react/form-builder)
+  - [moloch-v3-fields](/sdk/react/moloch-v3-fields)
 
-### [Utilities](https://github.com/HausDAO/monorepo/tree/develop/libs/tx-builder/src/utils)
+## [NPM](https://www.npmjs.com/package/@daohaus/tx-builder)
 
-### Related Packages
+## Usage
 
-- [moloch-v3-legos](/sdk/react/moloch-v3-legos)
-- [form-builder](/sdk/react/form-builder)
-- [moloch-v3-fields](/sdk/react/moloch-v3-fields)
-
-## [View on NPM](https://www.npmjs.com/package/@daohaus/tx-builder)
-
-### Usage
-
-#### Installation
+### Installation
 
 ```bash
 yarn add @daohaus/tx-builder
 ```
 
-#### Requirements
+### Requirements
 
 **Graph API Keys**
 
@@ -42,7 +39,7 @@ This package makes transaction to the blockchain so you will also need to provid
 
 This package fetches ABIs in some instances if you are not providing the ABI in the txLego. You can provide those keys from [etherscan](https://docs.etherscan.io/) flavored explorers if needed.
 
-#### Examples
+### Examples
 
 ```tsx
 <TXBuilder
@@ -57,7 +54,7 @@ This package fetches ABIs in some instances if you are not providing the ABI in 
 </TXBuilder>
 ```
 
-##### How to add to your application
+**How to add to your application**
 
 Tx Builder uses [viem](https://viem.sh/) and requires you to pass a `publicClient` as a prop. This example shows a component wrapped in our DHConnectProvider from the [@daohaus/connect](/sdk/react/connect) package that set up a `publicClient` upon wallet connection.
 
@@ -97,7 +94,7 @@ export const SomePage = () => {
 
 **Here are some examples of [contract and transaction legos](/sdk/react/moloch-v3-legos#examples) used in `tx-builder`.**
 
-##### How to fire a transaction
+**How to fire a transaction**
 
 Tx Builder exposes several handy functions that can be used throughout your app. These can be accessed by importing `useTxBuilder` from Tx Builder:
 
@@ -122,4 +119,4 @@ const { fireTransaction } = useTxBuilder();
 
 ```
 
-For a detailed example, refer to the `CancelProposal.tsx` our [Admin App](https://github.com/HausDAO/monorepo/blob/develop/apps/admin/src/components/CancelProposal.tsx).
+For a detailed example, refer to `CancelProposal.tsx` our [Admin App](https://github.com/HausDAO/monorepo/blob/develop/apps/admin/src/components/CancelProposal.tsx).
