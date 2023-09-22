@@ -2,31 +2,30 @@
 
 DAOhaus apps utilize many forms, and we decided to build a Form Builder tool that can be used to scaffold React forms. Form Builder is designed to take in a form configuration and then leverages existing UI elements and other scaffolding to output a fully functional form component.
 
-This library is highly composable and declarative, and utilizes form elements from our UI library. Form Builder pairs well with Tx Builder to reduce much of the complexity involved in creating forms from scratch. We utilize Form Builder and Tx Builder in our apps where users need to input data for a transaction.
+This library is highly composable and declarative, and utilizes form elements from our UI library. Form Builder pairs well with [Tx Builder](/sdk/react/tx-builder) to reduce much of the complexity involved in creating forms from scratch. We utilize Form Builder and Tx Builder in our apps where users need to input data for a transaction.
 
-## [View on Github](https://github.com/HausDAO/monorepo/tree/develop/libs/form-builder)
+## [Github](https://github.com/HausDAO/monorepo/tree/develop/libs/form-builder)
 
-### [Form Builder Base Package](https://github.com/HausDAO/monorepo/tree/develop/libs/form-builder-base)
+- [Form Builder Base Package](https://github.com/HausDAO/monorepo/tree/develop/libs/form-builder-base)
+- [Form Builder](https://github.com/HausDAO/monorepo/blob/develop/libs/form-builder/src/FormBuilder.tsx)
 
-### [Form Builder](https://github.com/HausDAO/monorepo/blob/develop/libs/form-builder/src/FormBuilder.tsx)
-
-### Related Packages
+Related Packages
 
 - [tx-builder](/sdk/react/tx-builder)
 - [moloch-v3-legos](sdk/react/moloch-v3-legos)
 - [moloch-v3-fields](/sdk/react/moloch-v3-fields)
 
-## [View on NPM](https://www.npmjs.com/package/@daohaus/form-builder)
+## [NPM](https://www.npmjs.com/package/@daohaus/form-builder)
 
-### Usage
+## Usage
 
-#### Installation
+### Installation
 
 ```bash
 yarn add @daohaus/form-builder
 ```
 
-##### How to add to you application
+**How to add to you application**
 
 ```tsx
 import { FormBuilder } from '@daohaus/form-builder';
@@ -45,11 +44,11 @@ export const FormPage = () => {
 };
 ```
 
-#### Examples
+### Examples
 
 Here is a tutorial on how to [build a form](/quickstart/form).
 
-#### Components
+## Components
 
 Form Builder leverages form components from our UI library. It's possible to add _custom components_ to a Form Builder instance, but the default inputs and other elements commonly used in a form (such as title, subtitle, description) utilize DAOhaus component designs.
 
@@ -85,7 +84,7 @@ Info prop receives a string and renders a tooltip.
   - This would pull it into `FieldLego` and ensure that the types match the values
   - Data used can only be props of the mapped component, which helps for typing the fields
 
-#### Development Guidelines
+## Development Guidelines
 
 When building a component, need to consider if its a form element that takes in data and if so you'll want to wrap in the `Buildable`
 

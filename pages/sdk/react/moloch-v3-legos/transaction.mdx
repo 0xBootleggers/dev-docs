@@ -1,10 +1,14 @@
 # Transaction Legos
 
-Transaction legos provide the transaction schemas & prepare arguments for external smart contract calls.
+Transaction legos provide the transaction schemas and prepare arguments for external smart contract calls.
 
-Check out all of our [transaction legos](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/tx.ts).
+## [Github](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/tx.ts)
 
-## How to make a simple transaction lego
+## Usage
+
+### Examples
+
+**How to make a simple transaction lego**
 
 ```tsx
 import { TXLego, CONTRACT_KEYCHAINS } from '@daohaus/utils';
@@ -36,7 +40,7 @@ const tokenApproval: TXLego = {
 
 **Note**: You must provide one of 'args', `argCallback` or `staticArgs`.
 
-#### Arg Lookups
+**Arg Lookups**
 
 Arg lookups are a series of options for how the `tx-builder` finds the values needed for any arg being passed to the function.
 
@@ -57,9 +61,9 @@ There are a few varieties:
 | [EncodeCallArg](https://github.com/HausDAO/monorepo/blob/develop/libs/tx-builder/src/utils/multicall.ts#L99)                | Encodes a function and it's args                                                                                                                          | Example in the [MULTICALL_SIDECAR](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/tx.t) tx lego         |
 | [EstimateGas](https://github.com/HausDAO/monorepo/blob/develop/libs/tx-builder/src/utils/multicall.ts#L343)                 | Used for the gas estimate arg needed when submitting DAO proposals                                                                                        | `tx-builder` will add this automatically                                                                                           |
 
-## How to make a transaction lego for creating a DAO proposal
+**How to make a transaction lego for creating a DAO proposal**
 
-This is done just like the transaction lego above, but with some extras. These transactions setup another transaction or series of transactions that the DAO will execute if the proposal passes. However, the proposal itself is also a transaction. The whole lego is wrapped in the [`buildMultiCallTX` function](https://github.com/HausDAO/monorepo/blob/develop/libs/tx-builder/src/utils/multicall.ts#L431).
+This is done just like the transaction lego above, but with some extras. These transactions setup another transaction or series of transactions that the DAO will execute if the proposal passes. However, the proposal itself is also a transaction. The whole lego is wrapped in the [`buildMultiCallTX`](https://github.com/HausDAO/monorepo/blob/develop/libs/tx-builder/src/utils/multicall.ts#L431) function.
 
 ```tsx
 const ISSUE_SHARES = buildMultiCallTX({

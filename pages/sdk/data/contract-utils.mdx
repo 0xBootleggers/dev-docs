@@ -1,40 +1,35 @@
 # @daohaus/contract-utils
 
-The `contract-utils` package consists of TypeScript wrappers for our primary contracts. While you will read state data from `moloch-v3-data`, `contract-utils` equips you with instances of the contract and access to a set of helpers for making function calls and writing data to the contracts.
+Contract utils provides TypeScript wrappers for our primary contracts. While you will read state data from `moloch-v3-data`, `contract-utils` equips you with instances of the contract and access to a set of helpers for making function calls and writing data to the contracts.
 
 It utilizes [TypeChain](https://github.com/dethcrypto/TypeChain) for type generation.
 
-## [View on Github](https://github.com/HausDAO/monorepo/tree/develop/libs/contract-utils)
+## [Github](https://github.com/HausDAO/monorepo/tree/develop/libs/contract-utils)
 
-### [Launch DAOs](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/moloch-v3-summoner-contract.ts)
+- [Summon DAOs](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/moloch-v3-summoner-contract.ts)
+- [Create DAO Proposals](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/moloch-v3-contract.ts)
+- [Encoding Helpers](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/encoding-utils.ts)
+- [Gas Estimate Helpers](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/estimate-util.ts)
+- [Summoning Params Helpers](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/summon-tx-utils.ts)
+- [Types](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/types.ts)
 
-### [Create DAO Proposals](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/moloch-v3-contract.ts)
+## [NPM](https://www.npmjs.com/package/@daohaus/contract-utils)
 
-### [Encoding Helpers](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/encoding-utils.ts)
+## Usage
 
-### [Gas Estimate Helpers](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/estimate-util.ts)
-
-### [Summoning Params Helpers](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/summon-tx-utils.ts)
-
-### [Types](https://github.com/HausDAO/monorepo/blob/develop/libs/contract-utils/src/lib/types.ts)
-
-## [View on NPM](https://www.npmjs.com/package/@daohaus/contract-utils)
-
-### Usage
-
-#### Installation
+### Installation
 
 ```bash
 yarn add @daohaus/profile-data
 ```
 
-#### Requirements
+### Requirements
 
 This packages uses [`ethers.js`](https://docs.ethers.org/v6/) providers and RPC endpoints to create the connection to the blockchain and contract. You should provide an `ether.js` provider.
 
-#### Examples
+### Examples
 
-##### How to init a contract and make a function call
+**How to init a contract and make a function call**
 
 ```tsx
 import { MolochV3Contract } from '@daohaus/contract-utils';
@@ -49,7 +44,7 @@ const molochV3 = MolochV3Contract.create({
 molochV3.sponsorProposal('1');
 ```
 
-##### How to summon a DAO
+**How to summon a DAO**
 
 Checkout the DAOhaus [User Guide](https://user-guide-ten.vercel.app/summoner/how-to-summon-a-dao) for details on the process and parameters.
 

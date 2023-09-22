@@ -1,12 +1,12 @@
 # @daohaus/moloch-v3-data
 
-The `moloch-v3-data` package was developed to encapsulate our subgraphs, empowering you to perform common queries across diverse entities with ease. The library is designed with optimization at its core, transforming the data you receive into a highly user-friendly and easy-to-manipulate format.
+Moloch v3 data encapsulate our subgraphs, empowering you to perform common queries across diverse entities with ease. The library is designed with optimization at its core, transforming the data you receive into a user-friendly and easy-to-manipulate format.
 
-The library's functions let you find single entities or query lists, and the list queries are supplemented with several helper tools for paginating, filtering and sorting.
+The library's functions let you find single entities or query lists, and the list queries are supplemented with several helper tools for pagination, filtering, and sorting.
 
-## [View on Github](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-data)
+## [Github](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-data)
 
-### Query
+Query
 
 - [DAOs](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-data/src/daos.ts)
 - [Proposals](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-data/src/proposals.ts)
@@ -15,31 +15,31 @@ The library's functions let you find single entities or query lists, and the lis
 - [Transactions](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-data/src/transactions.ts)
 - [DAO Database Records](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-data/src/records.ts)
 
-### [Helpers and Data Transformers](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-data/src/utils)
+---
 
-### [DAO Database Schemas](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-data/src/subgraph/json-schemas)
+- [Helpers and Data Transformers](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-data/src/utils)
+- [DAO Database Schemas](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-data/src/subgraph/json-schemas)
+- [Types](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-data/src/types)
 
-### [Types](https://github.com/HausDAO/monorepo/tree/develop/libs/moloch-v3-data/src/types)
+## [NPM](https://www.npmjs.com/package/@daohaus/moloch-v3-data)
 
-## [Search All Functions](/sdk/data/moloch-v3-data/functions)
+## [Functions](/sdk/data/moloch-v3-data/functions)
 
-## [View on NPM](https://www.npmjs.com/package/@daohaus/moloch-v3-data)
+## Usage
 
-### Usage
-
-#### Installation
+### Installation
 
 ```bash
 yarn add @daohaus/moloch-v3-data
 ```
 
-#### Requirements
+### Requirements
 
 If you are trying to query for data on Etheruem Mainnet or Gnosis Chain (and more to come) you will need to provide an API key from The Graph. Learn to get those keys [here](https://thegraph.com/docs/en/querying/managing-api-keys/) and [here](https://thegraph.com/studio/apikeys/).
 
-#### Examples
+### Examples
 
-##### How to find a single entity by ID
+**How to find a single entity by ID**
 
 ```tsx
 import { findDao } from '@daohaus/moloch-v3-data';
@@ -54,7 +54,7 @@ const daoRes = await findDao({
 });
 ```
 
-##### How to find a a list of entities
+**How to find a a list of entities**
 
 ```tsx
 import {
@@ -82,15 +82,15 @@ const list = await listProposals({
 });
 ```
 
-#### Filtering
+**Filtering**
 
 Provide any query the graph supports on fields within the entity you are querying. The Graph docs contain examples on [filtering](https://thegraph.com/docs/en/querying/graphql-api/#filtering).
 
-#### Ordering
+**Ordering**
 
 Provide a field to order by and the order direction (asc or desc).
 
-#### Paging
+**Paging**
 
 The SDK supports offest and cursor pagination. Cursor pagination overrides the ordering to the ID field. Pagination defaults to returning the first 100 results and provides the query required to get to the next page.
 

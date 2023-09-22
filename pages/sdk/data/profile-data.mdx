@@ -2,29 +2,28 @@
 
 Profile data provides a simple query to get data related to a single address. This could include an ENS and [Lens Protocol](https://lens.xyz/) profile data.
 
-## [View on Github](https://github.com/HausDAO/monorepo/tree/develop/libs/profile-data)
+## [Github](https://github.com/HausDAO/monorepo/tree/develop/libs/profile-data)
 
-### [Profile Query](https://github.com/HausDAO/monorepo/blob/develop/libs/profile-data/src/profile.ts)
+- [Profile Query](https://github.com/HausDAO/monorepo/blob/develop/libs/profile-data/src/profile.ts)
+- [Types](https://github.com/HausDAO/monorepo/tree/develop/libs/profile-data/src/types)
 
-### [Types](https://github.com/HausDAO/monorepo/tree/develop/libs/profile-data/src/types)
+## [NPM](https://www.npmjs.com/package/@daohaus/profile-data)
 
-## [View on NPM](https://www.npmjs.com/package/@daohaus/profile-data)
+## Usage
 
-### Usage
-
-#### Installation
+### Installation
 
 ```bash
 yarn add @daohaus/profile-data
 ```
 
-#### Requirements
+### Requirements
 
 This packages uses an rpc endpoint to get the ens name for an address. You should provide an ethereum mainnet rpc url.
 
-#### Examples
+### Examples
 
-##### How to fetch a profile by address
+**How to fetch a profile by address**
 
 ```tsx
 import { getProfileForAddress } from '@daohaus/profile-data';
