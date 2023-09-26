@@ -1,1 +1,129 @@
 # Subgraphs
+
+![subgraphs](https://github.com/HausDAO/monorepo/assets/522182/fae38f9a-0b29-45a2-846d-49ea2072f1be)
+
+![contracts-subgraphs](https://github.com/HausDAO/monorepo/assets/522182/b8ffd507-cb9e-4dd7-aaed-c3b40c0c6074)
+
+- [DAOhaus v3 Goerli Subgraph](https://thegraph.com/hosted-service/subgraph/hausdao/daohaus-v3-goerli) Playground
+- [Querying The Graph](https://thegraph.com/docs/en/querying/querying-the-graph/)
+
+## Schema
+
+Our subgraph schema is composed of the following entities:
+
+- DAOs
+- Proposals
+- Votes
+- Members
+- Rage Quits
+- Shamans
+- Records
+- Vaults
+- Event Transactions
+
+![](https://hackmd.io/_uploads/ry-L28kJT.png)![](https://hackmd.io/_uploads/r1x8EqVUJa.jpg)
+
+## Explorers and API Endpoints\*
+
+`*` Some URLs require an `api-key` in the path
+
+### Mainnet
+
+- [DAOhaus v2 Graph Explorer](https://thegraph.com/explorer/subgraph?id=9uvKq57ZiNCdT9uZ6xaFhp3yYczTM4Fgr7CJHM6tdX9H&view=Overview)
+- API: `https://gateway.thegraph.com/api/[api-key]/subgraphs/id/GfHFdFmiSwW1PKtnDhhcxhArwtTjVuMnXxQ5XcETF1bP`
+
+### Goerli
+
+- [DAOhaus v3 Goerli Subgraph](https://thegraph.com/hosted-service/subgraph/hausdao/daohaus-v3-goerli)
+- API: https://api.thegraph.com/subgraphs/name/hausdao/daohaus-v3-goerli
+
+### Gnosis Chain
+
+- [DAOhaus v3 Gnosis Graph Explorer](https://thegraph.com/explorer/subgraphs/5oXHJGgAWTSEXHK5FGf7mcxYtk6rSz7MJV5ccvGfoW6q?view=Overview)
+- API: `https://gateway.thegraph.com/api/[api-key]/subgraphs/id/5oXHJGgAWTSEXHK5FGf7mcxYtk6rSz7MJV5ccvGfoW6q`
+
+### Polygon
+
+- [DAOhaus v3 Polygon Subgraph](https://thegraph.com/hosted-service/subgraph/hausdao/daohaus-v3-polygon)
+- API: https://api.thegraph.com/subgraphs/name/hausdao/daohaus-v3-polygon
+
+### Arbitrum
+
+- [DAOhaus v3 Arbitrum Subgraph](https://thegraph.com/hosted-service/subgraph/hausdao/daohaus-v3-arbitrum)
+- API: https://api.thegraph.com/subgraphs/name/hausdao/daohaus-v3-arbitrum
+
+### Optimism
+
+- [DAOhaus v3 Optimism Subgraph](https://thegraph.com/hosted-service/subgraph/hausdao/daohaus-v3-optimism)
+- API: https://api.thegraph.com/subgraphs/name/hausdao/daohaus-v3-optimism
+
+## Example Queries
+
+### DAO
+
+Get a specific DAO with it's profile record
+
+```graphql
+{
+  dao(id: "0x0daoaddress") {
+    id
+    createdAt
+    profile: records(
+      first: 1
+      orderBy: createdAt
+      orderDirection: desc
+      where: { table: "daoProfile" }
+    ) {
+      createdAt
+      createdBy
+      contentType
+      content
+    }
+  }
+}
+```
+
+Get a list of DAOs
+
+```graphql
+{
+  daos(first: 5, orderBy: createdAt, orderDirection: desc) {
+    id
+    createdAt
+  }
+}
+```
+
+### Members
+
+Get a list of members for a DAO
+
+```graphql
+{
+  members(where: { dao: "0x0daoaddress" }) {
+    id
+    createdAt
+  }
+}
+```
+
+### Proposals
+
+Get a list of proposals with it's votes for a DAO
+
+```graphql
+{
+  proposals(where: { dao: "0x0daoaddress" }) {
+    id
+    yesVotes
+    noVotes
+    yesBalance
+    noBalance
+    createdAt
+    votes {
+      id
+      balance
+    }
+  }
+}
+```

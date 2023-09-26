@@ -1,1 +1,127 @@
 # DAO Database
+
+The Record Entity in our subgraphs are what we call the DAO database. These allow DAOs to create content that is indexed in the subgraphs and eliminates the need for off-chain database storage.
+
+![dao-database](https://github.com/HausDAO/monorepo/assets/522182/8b7bdda6-e5f9-4779-aae2-f910eefef147)
+
+## Create Record
+
+**How does a DAO create a RECORD?**
+
+1. Makes a proposal to call the post function in the [Poster.sol](https://github.com/onPoster/contract/blob/main/contracts/Poster.sol) contract for the DAOs chain. If this proposal passes the function will execute.
+2. A DAO member directly calls the post function on the [Poster.sol](https://github.com/onPoster/contract/blob/main/contracts/Poster.sol) contract
+
+**The DAOHaus subgraph indexes these posts into** [RECORD entities](/subgraphs/dao-database#record-entities).
+
+## Validate Post
+
+**How does the subgraph validate the post?**
+
+1. The TAG argument on the post function instructs the subgraph how to validate.
+
+- `daohaus.summoner.daoProfile`: Post must come from the DAOhaus factory contract
+- `daohaus.shares.daoProfile`: Post function for a DAO profile must come from a share holding address
+- `daohaus.proposal.database`: Post must come from a proposal execution
+- `daohaus.shares.database`: Post must come from a share holding address
+- `daohaus.member.database`: Post must come from a share or loot holding address
+
+2. The CONTENT argument must conform to `json` schemas
+
+It needs to be able to parse the `json` and find `daoId`, `table`, `queryType` fields.
+
+[Valid `json` Schemas](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-data/src/subgraph/json-schemas)
+
+Record can be used for any type of table. We have indexed the following types of data:
+
+- [DAO Profiles](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-data/src/subgraph/json-schemas/dao-profile.json)
+- [DAO Credentials](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-data/src/subgraph/json-schemas/credential.json)
+- [DAO Signals](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-data/src/subgraph/json-schemas/credential.json)
+- [DAO Choices](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-data/src/subgraph/json-schemas/credential.json)
+
+Using the subgraph in this way has allowed us to replace centralized databases.
+
+## Examples
+
+**How to [create a record](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/tx.ts#L324C30-L324C30) from a `txLego`**
+
+You can see an example of this in [`UPDATE_METADATA_SETTINGS`](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/tx.ts#L324C30-L324C30) on the DAO settings page in the Admin app.
+
+You can see an example of this in [`POST_SIGNAL`](https://github.com/HausDAO/monorepo/blob/develop/libs/moloch-v3-legos/src/tx.ts#L26) for the DAO signal proposal.
+
+**How to query a record**
+
+Get the latest record for a 'table'
+
+```graphql
+{
+  records(
+    where: { dao: "0x0", table: "daoProfile" }
+    first: 1
+    orderBy: createdAt
+    orderDirection: desc
+  ) {
+    id
+    content
+    table
+  }
+}
+```
+
+Get a list of records for a 'table'
+
+```graphql
+{
+  records(where: { dao: "0x0", table: "signalTcrChoice" }, first: 500) {
+    id
+    content
+    table
+  }
+}
+```
+
+## Record Entities
+
+```graphql
+"unique identifier and primary key of the entity"
+id: ID!
+```
+
+```graphql
+"block timestamp when the member entity was created"
+createdAt: String!
+```
+
+```graphql
+"Address of the dao member creating the record"
+createdBy: Bytes!
+```
+
+```graphql
+"Address of the dao the record is related to"
+dao: Dao!
+```
+
+```graphql
+"Tag argument in the newPost function call"
+tag: Bytes!
+```
+
+```graphql
+"record category identifier to ease querying"
+table: String!
+```
+
+```graphql
+"type of content in the content field. currently this is always json"
+contentType: String!
+```
+
+```graphql
+"content of the record"
+content: String!
+```
+
+```graphql!
+"Indicates if the entities  should be queried for latest or as a list"
+queryType: String!
+```
