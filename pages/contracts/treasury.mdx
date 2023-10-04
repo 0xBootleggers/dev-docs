@@ -1,1 +1,34 @@
 # Treasury (Safe) Contracts
+
+There are 2 types of safes that can be attached and managed with Moloch v3 Governance contract:
+
+- Ragequittable main safe (treasury)
+- Non-ragequittable sidecar safes
+
+The DAO can have 1 main safe and many sidecars. The DAOHaus summoner factory supports creating a new safe when setting up your DAO or bringing an existing safe and attaching the new Moloch v3 governance contracts as modules.
+
+## Responsibilities
+
+- Holds all on-chain assets, including ERC-20, ERC-721, ERC-1155, veTokens, native coins, etc.
+- Enables compatibility with all of the Safe-based apps and tools
+- Facilitates easy "upgrade" from a multisig to a DAO
+- Proposals are executed though Gnosis safe multicall function execution
+
+## [Github](https://github.com/HausDAO/Baal/blob/feat/baalZodiac/contracts/Baal.sol)
+
+## [Baal Docs](https://moloch.daohaus.fun/features/updates#gnosis-safe)
+
+- [Gnosis Zodiac Docs](https://github.com/gnosis/zodiac)
+
+## Deployments
+
+**Safe Template**
+
+This is the template cloned when creating a new DAO.
+
+- [Mainnet](https://etherscan.io/address/0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552)
+- [Goerli](https://goerli.etherscan.io/address/0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552)
+- [Gnosis Chain](https://gnosisscan.io/address/0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552)
+- [Polygon](https://polygonscan.com/address/0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552)
+- [Optimism](https://optimistic.etherscan.io/address/0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552)
+- [Arbitrum](https://arbiscan.io/address/0xd9Db270c1B5E3Bd161E8c8503c55cEABeE709552)
