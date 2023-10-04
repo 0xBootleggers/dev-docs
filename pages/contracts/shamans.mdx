@@ -1,1 +1,47 @@
 # Shaman Contracts
+
+A Shaman is a contract that the DAO approves and grants administrative permissions. Shamans are very powerful as they can make critical changes to the DAO outside of the proposal process.
+
+Shamans must be added to a DAO and granted permissions. through a DAO proposal calling the [setShaman](https://moloch.daohaus.fun/functions#setshamans) function on that DAO.
+
+**Shaman Roles**
+
+```
+  0 = no permission
+  1 = admin only
+  2 = manager only
+  4 = governance only
+  3 = admin + manager
+  5 = admin + governance
+  6 = manager + governance
+  7 = admin + manager + governance
+```
+
+**Role Permissions**
+
+Admin
+
+- `setAdminConfig`: Updates token transferability
+
+Manager
+
+- `mintShares` and `mintLoot`: Gives membership tokens to an address
+- `burnShares` and `burnLoot`: Takes membership tokens away from an address
+
+Governor
+
+- `setGovernanceConfig`: Updates governance attributes
+  - voting and grace period lengths
+  - required proposal offering
+  - proposal quorum
+  - proposal sponsor threshold
+  - minimum retention
+- `cancelproposal`: Cancel proposals if is in the voting period
+
+## [Github](https://github.com/HausDAO/baal-shamans/tree/main/contracts)
+
+## [Baal Docs](https://moloch.daohaus.fun/tools/shaman)
+
+- [Shaman best practices](https://moloch.daohaus.fun/features/shamanBestPractice)
+
+## [Examples](/contracts/shamans/examples)
