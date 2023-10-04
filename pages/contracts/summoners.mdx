@@ -1,1 +1,39 @@
 # Summoner Contracts
+
+All DAOs on the DAOhaus platform are launched with factory contracts. We have developed a base summoner factory. This contract is indexed by our subgraphs and must be used for the [Admin](https://admin.daohaus.club/) app deployed to `admin.daohaus.club` to work with the DAO.
+
+There are also Higher Order Summoner factories. These enable custom DAO configurations and call our base factory so they are indexed and available in our apps.
+
+![hos](https://github.com/HausDAO/monorepo/assets/522182/ce440914-38e7-4556-9cce-fc019288326b)
+
+## Github
+
+- Base summoner contract: [`BaalSummoner.sol`](https://github.com/HausDAO/Baal/blob/feat/baalZodiac/contracts/BaalSummoner.sol)
+- [`higherOrderFactories`](https://github.com/HausDAO/Baal/tree/feat/baalZodiac/contracts/higherOrderFactories)
+- [HOS examples](https://github.com/HausDAO/baal-tokens/tree/feat/num2shaman/contracts/hos)
+
+## [Examples](/contracts/summoners/examples)
+
+## Deployments
+
+**Base Summoner**
+
+All Higher Order Summoners will call this summoner. This is the contract that is indexed in the DAOhaus subgraph.DAOs summoned with this factory will work in `admin.daohaus.club`.
+
+- [Mainnet](https://etherscan.io/address/0x7e988A9db2F8597735fc68D21060Daed948a3e8C)
+- [Goerli](https://goerli.etherscan.io/address/0x7e988A9db2F8597735fc68D21060Daed948a3e8C)
+- [Gnosis Chain](https://gnosisscan.io/address/0x7e988A9db2F8597735fc68D21060Daed948a3e8C)
+- [Polygon](https://polygonscan.com/address/0x7e988A9db2F8597735fc68D21060Daed948a3e8C)
+- [Optimism](https://optimistic.etherscan.io/address/0x3E0eAdE343Ddc556a6Cf0f858e4f685ba303ce71)
+- [Arbitrum](https://arbiscan.io/address/0xb08Cc8C343cF6dC20d8cf51Fb2D6C436c6390dAa)
+
+**Advanced Token Summoner**
+
+This is the summoner used at `summon.daohaus.club`.
+
+- [Mainnet](https://etherscan.io/address/0x8a4A9E36106Ee290811B89e06e2faFE913507965)
+- [Goerli](https://goerli.etherscan.io/address/0xb0c5c96c3d21c1d58B98a5366dF0Af7AfcD94F95)
+- [Gnosis Chain](https://gnosisscan.io/address/0x8a4A9E36106Ee290811B89e06e2faFE913507965)
+- [Polygon](https://polygonscan.com/address/0x8a4A9E36106Ee290811B89e06e2faFE913507965)
+- [Optimism](https://optimistic.etherscan.io/address/0x3E0eAdE343Ddc556a6Cf0f858e4f685ba303ce71)
+- [Arbitrum](https://arbiscan.io/address/0x8a4A9E36106Ee290811B89e06e2faFE913507965)
