@@ -1,5 +1,6 @@
 {
-  "index": "Introduction",
+  "index": "Welcome",
+  "quickstart": "Quickstart",
   "sdk": "SDK",
   "subgraphs": "Subgraphs",
   "contracts": "Contracts",
