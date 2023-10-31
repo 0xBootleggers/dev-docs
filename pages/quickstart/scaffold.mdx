@@ -2,11 +2,11 @@
 
 Good day, developers! Today, we're diving deep into scaffolding a DAO app using the DAOhaus SDK. Let's get started.
 
-## Starter Repo
+## Setting Up Starter
 
 Begin by navigating to the DAOhaus GitHub organization. Here, you'll find the [`dao-app-starter-vite`](https://github.com/HausDAO/dao-app-starter-vite) repository. This is our primary and most maintained starter kit, designed to get you up and running swiftly.
 
-## Cloning the Repository
+### Cloning Repository
 
 Now, let's set up our project. If you glance at the [README](https://github.com/HausDAO/dao-app-starter-vite#readme) you'll find the project setup instructions. We'll be using `npx degit` to clone this repository into a fresh directory. For those unfamiliar, 'degit' allows you to clone repositories without their Git history, providing a clean slate. Simply clone the repository then navigate into that directory. initialize git and install the dependencies.
 
@@ -16,7 +16,7 @@ npx degit HausDAO/dao-app-starter-vite my-daohaus-app
 cd my-daohaus-app
 ```
 
-## Installing Dependencies
+### Installing Dependencies
 
 With the repository on your local machine, the next step is to install the necessary dependencies. We'll be using `yarn` for this. Initialize git and install the dependencies.
 
@@ -28,7 +28,7 @@ yarn
 
 Once installed, you can peek into the `package.json` file and the `node_modules` directory to see all the dependencies we've added.
 
-## Setting Up the Environment
+### Configuring Environment
 
 Next, let's configure our environment. Start by making a copy of the sample environment `.env.sample` and renaming it `.env`. Details about the variables are provided in the [README](https://github.com/HausDAO/dao-app-starter-vite#2-env-setup).
 
@@ -74,78 +74,256 @@ To utilize the WalletConnect features in the [DAOhaus Connect](/sdk/react/connec
 
 Lastly, there's a 'target key' which we'll delve into later. This is particularly useful if you're designing an app for a single DAO and is simply the contract address for the DAO your app is connected to.
 
-## Running the Development Server
+### Running Server
 
 With our environment set up, it's time to run the development server. Execute the command `yarn dev`. This will run the app locally on port 5173. Once executed, open your browser and navigate to [http://localhost:5173/](http://localhost:5173/). You should see the app loading and ready to go.
 
 ![your-haus](https://github.com/HausDAO/monorepo/assets/522182/6c69d5e2-f7e7-4255-b796-d2b3b3c54d79)
 
-## Exploring the Repository Structure
+### Repository Structure
 
-Before diving into the user interface, let's familiarize ourselves with the repository's structure. At the base level, you'll find essential files like '.env' and '.gitignore'. The 'index' file can be edited to customize your page title. The 'package.JSON' file lists all our dependencies. Notably, we're importing every DAOhaus SDK library here. Our build tooling for this app is Vite. It's fast, efficient, and has served us well for rapid application development. The 'public' folder contains assets, including a base favicon. The 'source' folder is where the magic happens. It contains our main app, components, pages, and more. As you explore, you'll notice the extensive use of the DAOhaus SDK, providing a plethora of custom components to streamline your development.
+Before diving into the user interface, let's familiarize ourselves with the repository's structure. At the base level, you'll find essential files like `.env` and `.gitignore`. The `index.html` file can be edited to customize your page title.
 
-## \*Navigating the UI Features
+`package.json` lists all our scripts and dependencies. Notably, we're importing packages from the DAOhaus SDK. Our build tooling for this app is [Vite](https://vitejs.dev/). It's fast, efficient, and has served us well for rapid application development.
 
-Now that we've set up our environment and familiarized ourselves with the repository structure, let's delve into the UI features and their corresponding code sections. Starting with the homepage, it's designed to be minimalistic, serving as a splash page. You can easily locate its content and make edits as needed. Notice the title and the DAOhaus Connect wallet feature? These are components from our SDK, providing wallet connection functionality right from the get-go.
+`src` is where the magic happens. It contains the main app, pages, components, utilities, and more. As you explore, you'll notice extensive use of the DAOhaus SDK, providing a plethora of custom components to streamline your development.
 
-## Exploring the DAOhaus Connect Package
+## Single DAO vs Multi DAO
 
-The DAOhaus Connect Package is a gem. By integrating it, you get a navigation bar with links, a footer, and a connection tool. This ensures a seamless user experience. When you scope to a specific DAO, the navigation bar expands, offering more options and functionalities.
+Let's dive into the flexibility of the DAOhaus SDK. Whether you're creating an app for a single DAO or building an app that pulls in multiple DAOs, we've got you covered. For those familiar with our [Admin](https://admin.daohaus.club/) app, it functions as a multi-tenant application, capable of loading multiple DAOs and providing consistent functionality.
 
-## Diving into DAO Pages
+However, if your goal is to cater to just one DAO, the setup is straightforward.
 
-Let's explore the DAO pages. The DAO overview page, for instance, pulls from the 'Moloch v3 Macro UI', one of our comprehensive React component libraries. This provides a holistic view of the DAO, including proposal information, token details, and more. The treasury page showcases the DAO's assets, while the proposals page lists all proposals with options to view detailed information, vote, cancel, or execute them. The members page offers a list of all DAO members, and by clicking on an individual member, you can view their detailed profile.
+### Setup Single DAO
 
-## Understanding Macro Components
+To configure your app for a single DAO, you'll need to add a `VITE_TARGET_KEY` to the `.env`. This key essentially tells the app which DAO to connect with. You'll input the DAO contract address into this target key.
 
-As you navigate through the app, you'll notice our extensive use of macro components. These are larger components that combine multiple smaller components, data, and functionalities. For instance, the proposal details page is constructed using several macro components, such as proposal details, proposal actions, and proposal history. This modular approach allows for flexibility and customization. Similarly, the settings page uses the 'DAO settings' macro, while the profile page provides options to view and edit user profiles.
+Following this, navigate to the `/src/targetDao.ts` file. This is where you'll provide some additional details about the chosen DAO. For clarity, the repository's [README](https://github.com/HausDAO/dao-app-starter-vite#3-single-dao-vs-multi-dao-setup) offers step-by-step instructions.
 
-## The Power of Modular Design
+```ts
+export const TARGET_DAO: {
+  [key: string]: {
+    ADDRESS: string;
+    SAFE_ADDRESS: string;
+    CHAIN_ID: ValidNetwork;
+  };
+} = {
+  '0xf6538c07324f59b3ba685d86393c65dce9676c70': {
+    ADDRESS: '0xf6538c07324f59b3ba685d86393c65dce9676c70',
+    SAFE_ADDRESS: '0xb64b12c4e68310fc222580dea1c86d202310f343',
+    CHAIN_ID: '0x5',
+  },
+  '0xf844b98df9ccdfbe5d460d0d7bdca232cf9da923': {
+    ADDRESS: '0xf844b98df9ccdfbe5d460d0d7bdca232cf9da923',
+    SAFE_ADDRESS: '0xeb0dc703b854791914f30b5a73dd04d8d22a9aff',
+    CHAIN_ID: '0x1',
+  },
+};
+```
+
+In the `TARGET_DAO` object, input the DAO contract address as the key. Then, within the object, provide the `ADDRESS` again. The `SAFE_ADDRESS` should be replaced with the contract address of the Gnosis Safe treasury. These values are available on the Settings page in the DAOhaus [Admin](https://admin.daohaus.club) app. The `CHAIN_ID` is related to the network the DAO is deployed on. For a list of EVM networks visit [Chainlist](https://chainlist.org/).
+
+These are two DAO objects in `targetDao.ts` if you are working with a single DAO one can be deleted.
+
+### Single DAO Demo
+
+Let's see this in action.
+
+The contract address of the [DAO App Starter Repo DAO](https://admin.daohaus.club/#/molochv3/0x5/0xf6538c07324f59b3ba685d86393c65dce9676c70) is `0xf6538c07324f59b3ba685d86393c65dce9676c70` on the Goerli testnet. You can see this in the URL structure or by visiting the [Settings](https://admin.daohaus.club/#/molochv3/0x5/0xf6538c07324f59b3ba685d86393c65dce9676c70/settings) page.
+
+When you load the app, you'll notice it detects this target DAO and displays relevant data.
+
+What if we want to switch DAOs?
+
+Simply updating the `VITE_TARGET_KEY` in `.env` to `0xf844b98df9ccdfbe5d460d0d7bdca232cf9da923` connects the app to the old PublicHAUS DAO on Mainnet.
+
+**Please note**: This will not work if you deleted the object for the second DAO in `targetDao.ts` in the previous step.
+
+### Set Up Multiple DAOs
+
+If your aim is to cater to multiple DAOs, the process is equally simple. Start by removing `VITE_TARGET_KEY` from the `.env` variable. Once done, the app becomes versatile, ready to work with any DAO you choose. For instance, if you want to load data for the [Haus hats](https://admin.daohaus.club/#/molochv3/0x5/0x052cf3746e2dff16af70bc2184a934dc48d181f7) DAO, simply adjust the URL in your app by following the pattern:
+
+`/#/molochv3/:daochain/:daoid`
+
+The app will look for the specific DAO called in the URL structure. This flexibility means you can incorporate features such as a DAO lookup tool allowing users to navigate between different DAOs with ease.
+
+## Navigating the App
+
+Now that we've set up our environment, familiarized ourselves with the repository structure, and understand the differences between multi- and single-DAO setups, let's delve into the interface and the corresponding code sections.
+
+### Home
+
+Starting with the homepage, `Home.tsx` is designed to be minimalistic, serving as a splash page to get you started. You can easily locate its content and make edits as needed. Notice the title from `index.html` and the Connect Wallet button from our SDK.
+
+The [Connect](sdk/react/connect) package is a gem. This makes it easy to allow users to connect to your app right from the get-go. Additionally, `components/layout` `HomeContainer.tsx` and `DaoContainer.tsx` setup `DHLayout` adding a navigation bar and footer. You can update the navigation in `navLinks`.
+
+When you scope your app to a [single DAO](/quickstart/scaffold#setup-single-dao) there will be a 'Target DAO Detected' link added to the homepage. Clicking this will show an expanded navigation offering more options and functionality.
+
+### DAO Pages
+
+Let's dive into the DAO pages. The DAO overview page, for instance, pulls from the [Moloch v3 Macro UI](/sdk/react/moloch-v3-macro-ui), one of our comprehensive React component libraries. This provides a holistic view of the DAO, including proposal information, token details, and more. The treasury page showcases the DAO's assets, while the proposals page lists all proposals with options to view detailed information, vote, cancel, or execute them. The members page offers a list of all DAO members, and by clicking on an individual member, you can view their detailed profile.
+
+New pages are added in `/src/Routes.tsx`.
+
+### Macro Components
+
+As you navigate through the app, you'll notice our extensive use of macro components. These are larger components that combine multiple smaller components, data, and functionality. For instance, the proposal details page is constructed using several macro components, such as proposal details, proposal actions, and proposal history. This modular approach allows for flexibility and customization. Similarly, the settings page uses the `DaoSettings` macro, while the profile page provides options to view and edit user profiles.
+
+### Modular Design
 
 One of the strengths of this starter kit is its modular design. Whether you're looking at atomic components or more complex macro components, you can easily mix, match, and customize to fit your needs. For instance, if you wanted to display only proposal details on a specific page, you could simply drop in the corresponding component. This flexibility accelerates development and fosters creativity.
 
-## Understanding Multi DAO vs Single DAO Setup
+## Customization Example
 
-Let's dive into the flexibility of the DAOhaus SDK. Whether you're aiming for a multi-DAO or a single-DAO setup, we've got you covered. For those familiar with our admin app, it functions like a multi-tenant application, capable of loading any DAO and providing consistent functionalities across multiple DAOs. However, if your goal is to cater to just one DAO, the setup is straightforward.
+Now, let's dive into the customization capabilities of the DAOhaus SDK. We'll explore how effortlessly you can edit pages and work with the components we provide.
 
-## Setting Up for a Single DAO
+For demonstration purposes, let's consider a scenario: You don't want a full-fledged members page. Instead, you'd like a condensed Members list right on the homepage.
 
-To configure for a single DAO, you'll need to set up a 'VT target key'. This key essentially tells the app which specific DAO to focus on. You'll input the DAO address into this target key. Following this, navigate to the 'Target DAO' file. This is where you'll provide some additional details about the chosen DAO. For clarity, the repository's readme offers step-by-step instructions. But to give you a quick rundown: In the 'Target DAO' object, input the DAO address as the key. Then, within the object, provide the DAO address again, the DAO's safe address, and the chain ID. These are the essential details required. For instance, if you're working with a DAO with the address '0xF65...', input this into your environment variable. The app will then exclusively load data for this DAO.
+### Moving Components
 
-## Demonstrating the Single DAO Setup
+The Members list provides a great example of the SDK's flexibility. While you could delete it entirely, for now, we'll repurpose it.
 
-Let's see this in action. Currently, the app is set up for a DAO on the Goerli network with the address '0xF65...'. When you load the app, you'll notice it detects this target DAO and displays relevant data. But what if we want to switch DAOs? Simply update the 'VT target key' with a new DAO address. For example, changing to a DAO on the Mainnet will update the app's focus accordingly.
+Navigate to the members page `Members.tsx` in the `pages` directory
 
-## Setting Up for Multiple DAOs
+```tsx
+<MemberList
+  daoChain={daoChain}
+  daoId={daoId}
+  allowLinks={true}
+  allowMemberMenu={true}
+/>
+```
 
-If your aim is to cater to multiple DAOs, the process is equally simple. Start by removing the 'VT target key' variable. Once done, the app becomes versatile, ready to work with any DAO you choose. For instance, if you want to load data for 'Haus hats', simply adjust the URL. The app will now look for this specific DAO. This flexibility means you can even incorporate a lookup tool on your homepage, allowing users to navigate between different DAOs with ease.
+The `MemberList` component requires the `daoChain` and `daoId`. Additionally, it offers options like `allowLinks` and `allowMemberMenu`, which enable or disable specific links.
 
-## Recap
+Using the `useCurrentDao()` hook, the component fetches the DAO chain and DAO ID. Since we already have this data on our DAO overview page, integrating the member list should be straightforward. Let's add the member list to our DAO overview.
 
-In summary, whether you're aiming for a single or multi-DAO setup, the process is streamlined and user-friendly. For multiple DAOs, remember to omit the target key and utilize the URL structure for navigation. With these tools at your disposal, you're well-equipped to create a tailored experience for your users, be it for one or multiple DAOs.
+To achieve this, navigate to the `pages` directory. Here, you'll find the DAO overview page `Dao.tsx`.
 
-## Editing Pages and Working with Components
+1. Add `MemberList` to:
 
-Now, let's dive into the customization capabilities of the DAOhaus SDK. We'll explore how effortlessly you can edit pages and work with the components we provide. Imagine you're content with the sales page, but you'd like to add a different context or perhaps a new feature.
+```tsx
+import { DaoOverview } from '@daohaus/moloch-v3-macro-ui';
+```
 
-## Moving Components Around
+2. Add `Loading, useBreakpoint, widthQuery` to:
 
-For demonstration purposes, let's consider a scenario: You don't want a full-fledged members page. Instead, you'd like a condensed members list right on the DAO homepage. To achieve this, navigate to the pages directory. Here, you'll find the DAO overview page and the members page. First things first, let's declutter the navigation by removing the members link. And voila, it's gone!
+```tsx
+import { SingleColumnLayout } from '@daohaus/ui';
+```
 
-## Integrating the Members List
+3. Add `const isMd = useBreakpoint(widthQuery.md);` to:
 
-Now, let's focus on the Members list. This component is a great example of the SDK's flexibility. While you can delete it entirely, for now, we'll repurpose it. The member list component requires the DAO chain and the DAO ID. Additionally, it offers options like 'allow links' and 'allow member menu', which enable or disable specific links. You can refer to our documentation for a deeper understanding of these options. Using the 'use current DAO' hook, the component fetches the DAO chain and the DAO ID. Since we already have this data on our DAO overview page, integrating the member list should be straightforward. Let's add the member list to our DAO overview. And there you have it, a seamlessly integrated members list right on the homepage!
+```tsx
+Dao();
+```
 
-## Enhancing the Layout
+4. Add the following to `SingleColumnLayout`:
 
-While the layout looks good, let's enhance it further. How about adding a header above the members list for clarity? Using the DAOhaus UI, we can easily pull in an H4 header. Opting for a centered alignment gives it a polished look. Notice the links? By enabling 'allow links', we activate the member menu and associated links, offering functionalities like 'guild kick'.
+```tsx
+{
+  !daoChain || !daoId ? (
+    <Loading size={isMd ? 8 : 16} padding="6rem" />
+  ) : (
+    <MemberList
+      daoChain={daoChain}
+      daoId={daoId}
+      allowLinks={true}
+      allowMemberMenu={true}
+    />
+  );
+}
+```
 
-## Recap
+`Dao.tsx` should now look like this:
 
-In this segment, we demonstrated the ease of customizing pages, moving components, and enhancing layouts using the DAOhaus SDK. The toolkit's flexibility ensures you can tailor the app to your specific needs, ensuring a unique and user-friendly experience.
+```tsx
+import { useCurrentDao } from '@daohaus/moloch-v3-hooks';
+import { DaoOverview, MemberList } from '@daohaus/moloch-v3-macro-ui';
+import {
+  SingleColumnLayout,
+  Loading,
+  useBreakpoint,
+  widthQuery,
+} from '@daohaus/ui';
+
+export function Dao() {
+  const { daoChain, daoId } = useCurrentDao();
+  const isMd = useBreakpoint(widthQuery.md);
+
+  return (
+    <SingleColumnLayout>
+      {daoId && daoChain && <DaoOverview daoChain={daoChain} daoId={daoId} />}
+
+      {!daoChain || !daoId ? (
+        <Loading size={isMd ? 8 : 16} padding="6rem" />
+      ) : (
+        <MemberList
+          daoChain={daoChain}
+          daoId={daoId}
+          allowLinks={true}
+          allowMemberMenu={true}
+        />
+      )}
+    </SingleColumnLayout>
+  );
+}
+
+export default Dao;
+```
+
+And there you have it, a seamlessly integrated members list right on the DAO overview!
+
+### Enhancing Layout
+
+While the layout looks good, let's enhance it further.
+
+How about adding a header above the members list for clarity?
+
+Using the DAOhaus UI, we can easily pull in an `H2` header. Opting for a centered alignment gives it a polished look. Yes, yes, yes.
+
+Add `H2` to:
+
+```tsx
+import {
+  SingleColumnLayout,
+  Loading,
+  useBreakpoint,
+  widthQuery,
+} from '@daohaus/ui';
+```
+
+Below `{daoId && daoChain && <DaoOverview daoChain={daoChain} daoId={daoId} />}`
+
+Add:
+
+```tsx
+<H2>Members</H2>
+```
+
+Notice the links in the caret and dot dot dot menus? These were enabled by setting `allowLinks` and `allowMemberMenu` to true in the Members list component. This provides access to details about each member and features like 'Delegate To' and 'Guild Kick'
+
+### Updating Navigation
+
+Finally, let's declutter the navigation by removing the Members link.
+
+1. Open `DaoContainer.tsx`
+2. Delete:
+
+```tsx
+{ label: "Members", href: `/${routePath}/members` },
+```
+
+And voila, it's gone!
 
 ## Wrapping Up
 
-To sum up our walkthrough today, the DAOhaus SDK is designed to be your springboard. It's not just about building a DAO app; it's about innovating, prototyping, and bringing your unique ideas to life. Our primary goal is to streamline the process, ensuring you can transition from concept to a fully functional DAO app in record time. Think of the SDK as your blank canvas. While we provide the tools and the foundation, the masterpiece is yours to create. Dive in, experiment, and customize to your heart's content.
+In summary, whether you're aiming for a single or multi-DAO setup, the process is streamlined and user-friendly. For multiple DAOs, remember to omit the target key and utilize the URL structure for navigation. With these tools at your disposal, you're well-equipped to create a tailored experience for your users, be it for one or multiple DAOs.
+
+We also demonstrated the ease of moving components, enhancing layouts, and updating the navigation using the DAOhaus SDK. The toolkit's flexibility ensures you can tailor the app to your specific needs, ensuring a unique and user-friendly experience.
+
+The DAOhaus SDK is designed to be your springboard. It's not just about building a DAO app; it's about innovating, prototyping, and bringing your unique ideas to life. Our primary goal is to streamline the process, ensuring you can transition from concept to a fully functional DAO app in record time.
+
+Think of the SDK as your blank canvas. While we provide the tools and the foundation, the masterpiece is yours to create. Dive in, experiment, and customize to your heart's content.
 
 Best of luck on your DAO app journey, and remember, the possibilities are endless!
