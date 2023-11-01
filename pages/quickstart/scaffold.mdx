@@ -141,7 +141,7 @@ Simply updating the `VITE_TARGET_KEY` in `.env` to `0xf844b98df9ccdfbe5d460d0d7b
 
 ### Set Up Multiple DAOs
 
-If your aim is to cater to multiple DAOs, the process is equally simple. Start by removing `VITE_TARGET_KEY` from the `.env` variable. Once done, the app becomes versatile, ready to work with any DAO you choose. For instance, if you want to load data for the [Haus hats](https://admin.daohaus.club/#/molochv3/0x5/0x052cf3746e2dff16af70bc2184a934dc48d181f7) DAO, simply adjust the URL in your app by following the pattern:
+If your aim is to cater to multiple DAOs, the process is equally simple. Start by removing `VITE_TARGET_KEY` from the `.env` variable. Once done, the app becomes versatile, ready to work with any DAO you choose. For instance, if you want to load data for the [Haus Hats](https://admin.daohaus.club/#/molochv3/0x5/0x052cf3746e2dff16af70bc2184a934dc48d181f7) DAO, simply adjust the URL in your app by following the pattern:
 
 `/#/molochv3/:daochain/:daoid`
 
@@ -158,6 +158,8 @@ Starting with the homepage, `Home.tsx` is designed to be minimalistic, serving a
 The [Connect](sdk/react/connect) package is a gem. This makes it easy to allow users to connect to your app right from the get-go. Additionally, `components/layout` `HomeContainer.tsx` and `DaoContainer.tsx` setup `DHLayout` adding a navigation bar and footer. You can update the navigation in `navLinks`.
 
 When you scope your app to a [single DAO](/quickstart/scaffold#setup-single-dao) there will be a 'Target DAO Detected' link added to the homepage. Clicking this will show an expanded navigation offering more options and functionality.
+
+![image](https://github.com/HausDAO/monorepo/assets/522182/add7c709-a3a1-49f8-82d6-31e91f57b147)
 
 ### DAO Pages
 
@@ -274,6 +276,8 @@ export default Dao;
 
 And there you have it, a seamlessly integrated members list right on the DAO overview!
 
+Notice the links in the caret and dot dot dot menus? These were enabled by setting `allowLinks` and `allowMemberMenu` to true in the Members list component. This provides access to details about each member and features like 'Delegate To' and 'Guild Kick'
+
 ### Enhancing Layout
 
 While the layout looks good, let's enhance it further.
@@ -300,8 +304,6 @@ Add:
 ```tsx
 <H2>Members</H2>
 ```
-
-Notice the links in the caret and dot dot dot menus? These were enabled by setting `allowLinks` and `allowMemberMenu` to true in the Members list component. This provides access to details about each member and features like 'Delegate To' and 'Guild Kick'
 
 ### Updating Navigation
 
