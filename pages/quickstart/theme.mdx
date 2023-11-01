@@ -1,28 +1,30 @@
 # Create a Theme
 
-This guide will help you understand the process of creating a custom UI theme using the DAOhaus SDK.
+This guide will help you understand the process of creating a custom UI theme for your app using the DAOhaus SDK.
 
-## Overview
+## Components
 
-### Components
+The [Component Library](/sdk/library) packages hold the design theme for all React components in the SDK.
 
-The DAOhaus UI Library hold the design theme for all React components in the SDK. [Styled Components](https://styled-components.com/) are utilized for writing css code to style the components. View the documentation [here](https://styled-components.com/).
+You can explore the components with the default theme in our [Storybook](https://storybook.daohaus.fun/).
 
-Explore the components with the default theme in [Storybook](https://storybook.daohaus.fun/).
+[Styled Components](https://styled-components.com/) are utilized for adding custom CSS.
 
-### Colors
+## Colors
 
-The color system was created with Radix, which offers a refined and accessible approach to designing user interfaces, ensuring both aesthetics and accessibility. Key features include text colors that meet targeted contrast ratios, seamless automatic dark mode integration, transparent color variants, APCA text contrast targeting, and P3 color gamut support for vibrant hues. The system is built on a 12-step scale, where each step corresponds to specific UI use cases—from app backgrounds to high-contrast text. Developers looking to grasp the intricacies of the color scales can find a detailed guide [here](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale). Additionally, you can view the predefined color scales [here](https://www.radix-ui.com/colors/docs/palette-composition/scales) and gather tips for creating a brand-specific palette [here](https://www.radix-ui.com/colors/docs/palette-composition/composing-a-palette).
+The color system was created with [Radix](https://www.radix-ui.com/colors), which offers a refined and accessible approach to designing user interfaces, ensuring both aesthetics and accessibility. Key features include text colors that meet targeted contrast ratios, seamless automatic dark mode integration, transparent color variants, APCA text contrast targeting, and P3 color gamut support for vibrant hues.
 
-### Theme
+The system is built on a 12-step scale, where each step corresponds to specific UI use cases—from app backgrounds to high-contrast text. Developers looking to grasp the intricacies of the color scales can find detailed documentation for [Understanding the scale](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale). Additionally, you can view the predefined color [Scales](https://www.radix-ui.com/colors/docs/palette-composition/scales) and gather tips for [Composing a color palette](https://www.radix-ui.com/colors/docs/palette-composition/composing-a-palette).
+
+## Theme
 
 You can view the code for the theme in our [monorepo](https://github.com/HausDAO/monorepo/tree/develop/libs/ui/src/theme).
 
-- [Core theme object](https://github.com/HausDAO/monorepo/blob/develop/libs/ui/src/theme/theme.ts)
+- [Core Theme Object](https://github.com/HausDAO/monorepo/blob/develop/libs/ui/src/theme/theme.ts)
 - [Colors](https://github.com/HausDAO/monorepo/blob/develop/libs/ui/src/theme/global/colors.ts)
-- Global elements
+- Global Elements
   - [Styles](https://github.com/HausDAO/monorepo/blob/develop/libs/ui/src/theme/global/globalStyles.ts)
-  - [Fonts](https://github.com/HausDAO/monorepo/blob/develop/libs/ui/src/theme/global/font.ts) and [font imports](https://github.com/HausDAO/monorepo/blob/develop/libs/ui/src/theme/global/fonts.css)
+  - [Fonts](https://github.com/HausDAO/monorepo/blob/develop/libs/ui/src/theme/global/font.ts) and [Font Imports](https://github.com/HausDAO/monorepo/blob/develop/libs/ui/src/theme/global/fonts.css)
   - [Breakpoints](https://github.com/HausDAO/monorepo/blob/develop/libs/ui/src/theme/global/breakpoints.ts)
 - [UI Atoms](https://github.com/HausDAO/monorepo/tree/develop/libs/ui/src/theme/atoms)
 
@@ -36,19 +38,19 @@ Install
 yarn install @daohaus/ui
 ```
 
-Add HausThemeProvider to the root of your app.
+Add `HausThemeProvider` to the root of your app.
 
-```jsx
-import React from "react";
-import { HausThemeProvider } from "@daohaus/ui";
+```tsx
+// main.tsx
+import React from 'react';
+import { HausThemeProvider } from '@daohaus/ui';
 
-import { App } from "./App";
+import { App } from './App';
 
-
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <HausThemeProvider>
-        <App />
+      <App />
     </HausThemeProvider>
   </React.StrictMode>
 );
@@ -56,43 +58,42 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 
 You will now be able to add any component from the UI library to your app.
 
-```jsx
-import { Button } from "@daohaus/ui";
+```tsx
+import { Button } from '@daohaus/ui';
 
 export const ExampleComponent = () => {
   return <Button>I am Button</Button>;
 };
 ```
 
-## Customizing The Theme
+## Customizing the Theme
 
-The HausThemeProvider can be passed a new theme to override elements of the default theme.
+`HausThemeProvider` can be passed a new theme to override elements of the default theme.
 
-1. Create a new theme object
+1. Create a new theme object in your `components` directory.
 
 ```ts
 // theme.ts
-import { ThemeOverrides } from "@daohaus/ui";
+import { ThemeOverrides } from '@daohaus/ui';
 
 export const customTheme: ThemeOverrides = {
-  themeName: "customThemeName",
+  themeName: 'customThemeName',
 };
 ```
 
-2. Pass the object to the HausThemeProvider
+2. Import the theme and pass the object to `HausThemeProvider` in `main.tsx`.
 
-```jsx
-import React from "react";
-import { HausThemeProvider } from "@daohaus/ui";
+```tsx
+import React from 'react';
+import { HausThemeProvider } from '@daohaus/ui';
 
-import { App } from "./App";
-import { customTheme } from "./theme/theme.ts"
+import { App } from './App';
+import { customTheme } from './components/theme';
 
-
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <HausThemeProvider themeOverrides={customTheme}>
-        <App />
+      <App />
     </HausThemeProvider>
   </React.StrictMode>
 );
@@ -102,8 +103,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 
 ```ts
 // theme.ts
-import { ThemeOverrides, defaultDarkTheme } from "@daohaus/ui";
-import { crimson } from "@radix-ui/colors";
+import { ThemeOverrides, defaultDarkTheme } from '@daohaus/ui';
+import { crimson } from '@radix-ui/colors';
 
 export const customPrimary = {
   step1: crimson.crimson1,
@@ -121,24 +122,29 @@ export const customPrimary = {
 };
 
 export const customTheme: ThemeOverrides = {
-  themeName: "customThemeName",
+  themeName: 'customThemeName',
   rootBgColor: customPrimary.step11,
   rootFontColor: customPrimary.step5,
   primary: { ...customPrimary },
   button: {
     ...defaultDarkTheme.button,
-    radius: "10px",
+    radius: '10px',
   },
 };
 ```
 
+![crimson-theme](https://github.com/HausDAO/monorepo/assets/522182/66252c7c-def6-462a-a71e-df41c0ed9abc)
+
 ## Overriding Component Styles
 
-You can use styled-components to tweak individual component styles.
+You can also use styled-components to tweak individual component styles.
 
-```jsx
-import styled from "styled-components";
-import { H1, Tag } from "@daohaus/ui";
+1. Create a new component in your `components` directory.
+
+```tsx
+// ExampleComponent.tsx
+import styled from 'styled-components';
+import { H1, Tag } from '@daohaus/ui';
 
 const CrazyH1 = styled(H1)`
   font-size: 17rem;
@@ -161,3 +167,7 @@ export const ExampleComponent = () => {
   );
 };
 ```
+
+2. Import the component and add it to any page.
+
+![image](https://github.com/HausDAO/monorepo/assets/522182/7994ce23-9d3c-4c11-917e-c999b845b72e)
