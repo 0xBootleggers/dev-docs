@@ -7,7 +7,7 @@ const config: DocsThemeConfig = {
     const { asPath, defaultLocale, locale } = useRouter();
     const { frontMatter } = useConfig();
     const url =
-      'https://my-app.com' +
+      'https://docs.daohaus.club/' +
       (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
 
     return (
@@ -179,12 +179,12 @@ const config: DocsThemeConfig = {
     defaultTheme: 'dark',
   },
   project: {
-    link: 'https://github.com/HausDAO/',
+    link: 'https://github.com/HausDAO/dev-docs/',
   },
   chat: {
     link: 'https://discord.gg/daohaus',
   },
-  docsRepositoryBase: 'https://github.com/HausDAO/',
+  docsRepositoryBase: 'https://github.com/HausDAO/dev-docs',
   sidebar: {
     defaultMenuCollapseLevel: 1,
   },
