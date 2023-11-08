@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components';
+
 # Create a Theme
 
 This guide will help you understand the process of creating a custom UI theme for your app using the DAOhaus SDK.
@@ -56,6 +58,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 );
 ```
 
+<Callout emoji="🤔">
+  If using Vite you will need to update your `vite.config.ts` similar to our
+  [dao-app-starter-vite](https://github.com/HausDAO/dao-app-starter-vite/blob/main/vite.config.ts#L10)
+</Callout>
+
 You will now be able to add any component from the UI library to your app.
 
 ```tsx
@@ -65,11 +72,6 @@ export const ExampleComponent = () => {
   return <Button>I am Button</Button>;
 };
 ```
-
-> [!IMPORTANT]  
-> Before running `yarn dev`. If running a default vite react starter you must update vite.config.ts by defining process.env
-> see an example here [https://github.com/HausDAO/dao-app-starter-vite/blob/main/vite.config.ts#L10](HausDAO/dao-app-starter-vite)
-
 
 ## Customizing the Theme
 
