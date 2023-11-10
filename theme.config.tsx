@@ -24,6 +24,22 @@ const config: DocsThemeConfig = {
             'The Protocol for Purpose-Driven Governance'
           }
         />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:image"
+          content="https://docs.daohaus.club/preview.png"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@DAOhaus" />
+        <meta name="twitter:title" content="DAOhaus Developer Docs" />
+        <meta
+          name="twitter:description"
+          content="The Protocol for Purpose-Driven Governance"
+        />
+        <meta
+          name="twitter:image"
+          content="https://docs.daohaus.club/twitter.png"
+        />
       </>
     );
   },
