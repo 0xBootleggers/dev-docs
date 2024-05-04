@@ -1,0 +1,102 @@
+# DEPLOYING SUBGRAPHS
+
+**WHO**: Any contributor can update code and create PRs. Safe signers can deploy and publish new version to the network.
+
+**HOW OFTEN**: As Needed.
+
+## Key Considerations
+
+**☢️☢️ _DANGER ZONE_ ☢️☢️**
+
+Because these subgraphs are deep in the foundation of the DAOhaus protocol, changes can reverberate throughout the SDK and all apps built with it, so we need to be careful when making updates. It's usually best not to make subgraph code changes unless absolutely necessary. If you do make changes, all side effects should be assessed and tested before propagating throughout the protocol! Deployment to non-test subgraphs should happen all at the same time. The SDK and apps are making the same queries, so if a change happens in one subgraph and a query is updated, it'll break in the subgraph that isn't deployed.
+
+**Dangerous changes include**
+
+- Removing fields that the SDK or apps might be relying on
+- Changing field types
+
+**Safer changes include**
+
+- Adding fields or tables
+
+## HOW TO
+
+**Prepare**
+
+So you've made your subgraph code changes, tested and are ready to deploy?
+
+You first should familiarize yourself with the [deployment docs The Graph provides.](https://thegraph.com/docs/en/deploying/subgraph-studio/)
+
+Graph tooling installation instructions [are here](https://thegraph.com/docs/en/quick-start/#2-install-the-graph-cli) - make sure to install the Graph CLI.
+
+```bash
+npm install -g @graphprotocol/graph-cli
+```
+
+**Step 1: Authenticate into the studio and get the DEPLOY KEY**
+
+You will need to sign into the subgraph studio with the safe that owns the account. To do this you need to be a signer on that safe.
+
+Visit the [studio here](https://thegraph.com/studio/)
+
+Connect with the Arbitrum safe that owns the account: 0x08678A8d65D8d81bD13db617211F1E9CE176B2fB
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/36f54023-dacc-481a-a814-edc2cd195306)
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/11311cb8-5ed0-40c6-a2e8-12f0edb40830)
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/bc55ccd7-82f5-4879-9116-bdc023250a92)
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/75c74c75-ef17-4521-8d1d-006c6672db73)
+
+When connected the dashboard will look like this:
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/0309e45f-35f2-4a09-8671-51de72a95abe)
+
+Then you can click into one of the subgraphs to find the DEPLOY KEY. Save that to use later.
+
+Also note the name and current version of each subgraph so you can bump that when you deploy.
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/75f56b80-0e68-40cb-b459-3ba6bbd57a32)
+
+**Step 2: Prepare and deploy subgraph code**
+
+The Graph CLI generates and builds all the code needed for deployment. This will need to be done in order for each network.
+
+- **generate subgraph.yaml**
+
+```bash
+nx run moloch-v3-subgraph:generate-config --network=mainnet
+```
+
+- **generate/build code**
+
+```bash
+nx run moloch-v3-subgraph:generate-code
+```
+
+- **deploy code** - you need to use the subgraph name here (seen in the urls from the dashboard) and bump the version number you looked at for each network here.
+
+```bash
+nx run moloch-v3-subgraph:graph-deploy-studio --name=daohaus-v3 --network=mainnet --semver=0.6.9
+```
+
+- Successful output:
+  ![](https://github.com/HausDAO/dev-docs/assets/6923345/442fd170-dc99-4534-bb24-a3392377074c)
+
+Repeat for the other networks. Note the config generation step uses the name 'xdai' while the studio deployment uses the name 'gnosis'.
+
+Command cheat sheet for copy and paste [here](https://github.com/HausDAO/monorepo/blob/develop/apps/moloch-v3-subgraph/README.md)
+
+**Step 3: Publish the new version in the studio**
+
+Note that as of writing this we only need to do this step on Mainnet and Gnosis. The Base subgraph doesn't require publishing just yet.
+
+Go back to the studio dashboard and navigate to your subgraph and select the new version.
+![](https://github.com/HausDAO/dev-docs/assets/6923345/95d44699-b48f-429c-af5a-de0e64982709)
+
+Use the publish button and initiate the publishing transaction. Select the Arbitrum network in the publish form.
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/b78dd7f5-e8a3-4aa0-8992-375c52e81a55)
+
+This will create a proposal in the safe that will publish once signed by enough safe owners and executed.

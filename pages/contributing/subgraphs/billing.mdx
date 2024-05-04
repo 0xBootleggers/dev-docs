@@ -1,0 +1,33 @@
+# MANAGING STUDIO BILLING ACCOUNT
+
+**WHO**: ASafe signers can view and update billing balances and api keys.
+
+**HOW OFTEN**: Check this monthly and make updates as needed.
+
+**API keys**
+You can manage API keys from the studio dashboard at
+
+- https://thegraph.com/studio/apikeys/
+- create new keys
+- restrict keys by domain
+- view key usage and fees assocaited to it
+
+**Each month** we should check the `dh v3 dev` key to ensure it has not gone over it's alloted usage. This key is not restrained to a domain and if leaked could be missued. If it's over the limit, delete that key and create a new dev key with the same monthly limit.
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/e4fbb04c-ace0-4c54-b2b5-2b2cf3328c84)
+
+**Billing**
+Manage billing at
+
+- https://thegraph.com/studio/billing/
+- Monitor GRT balance
+- Add GRT if query balance is low
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/618f16af-b0ec-48b8-ba76-d699586922fa)
+
+To add Balance
+
+1. Visit https://thegraph.com/studio/billing/
+2. Click `Manage Plan`
+3. Click `Deposit from Wallet`
+4. Adjust the amount and follow the prompts to add balance. This will create a new transaction in the safe that will add GRT when executed.
