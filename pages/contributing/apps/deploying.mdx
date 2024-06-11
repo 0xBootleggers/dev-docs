@@ -1,0 +1,63 @@
+# DEPLOYING APPS AND NPM PACKAGES
+
+**WHO**: Any contributor can monitor and test PRs. Ultimately the Protocol Maintenance steward is responsible for ensuring the PR testing and merging process is flowing.
+
+**HOW OFTEN**: Open PRs should be reviewed every other week at minimum.
+
+## HOW TO
+
+### APPS
+
+The app deployments are managed with github actions, built to Cloudflare instances and the domains are managed by core contributors:
+
+- PRs merged from your feature branch to `develop` will build to the .fun testing deployments
+- PRs merged from `develop` to `main` will build to the .club production deployments
+
+The subgraph deployment process can be found [here](/contributing/subgraphs/deploying)
+
+### NPM PACKAGES
+
+The SDK npm packages are managed with github actions and are automatically deployed when package versions are updated and merged into `master`.
+
+**1. Open a release branch**
+Create an new branch off `develop` with this naming convention:
+
+`release/<year><month<day>` ie.) `release/20240329`
+
+**2. Bump the npm package versions**
+These are found in each affected package in the [libs folder](https://github.com/HausDAO/monorepo/tree/develop/libs)
+
+Use standard semver versioning to identify patch, minor and major version updates.
+
+NOTE: These packages are pretty tightly coupled, sowWe've been bumping all package version in most cases keeping the version numbers in sync across packages.
+
+![](https://github.com/HausDAO/dev-docs/assets/6923345/e2bd2496-c631-4e40-afc9-718a9b9eb41c)
+
+**3. Create a Release page**
+
+[All Release](https://github.com/HausDAO/monorepo/releases)
+
+[Example](https://github.com/HausDAO/monorepo/releases/tag/v0.4.1)
+
+Include:
+
+- Full commit log
+- Bullet of important changes
+- Note any breaking changes and upgrade instructions
+- Contributor list
+
+**4. Open a PRs from**
+
+- First from your release branch into `develop`
+- Then from `develop` into `main`
+- PRs will require contributor approval. Post the link to the PR in [#Protocol Chat](https://discord.com/channels/709210493549674598/1082764707141795960) to get help with that.
+
+**5. Monitor the github action log to ensure the build is successful**
+
+[Action Logs](https://github.com/HausDAO/monorepo/actions)
+
+**6. Let the world know!**
+
+When deployed post a link to the release page in [#Protocol Chat](https://discord.com/channels/709210493549674598/1082764707141795960)
+
+![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWE2Y21hOWN5MHNiZHBqOTV5MTA0eHNzN3pwYmEyN3Q3N25kbXVtcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tUqQ7iKSJsaBO/giphy.gif)
