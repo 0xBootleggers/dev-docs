@@ -1,4 +1,5 @@
 {
-  "apps": "Apps and SDK Maintenance",
-  "subgraphs": "Subgraph Maintenance"
+  "apps": "App Maintenance",
+  "subgraphs": "Subgraph Maintenance",
+  "contracts": "Contract Maintenance"
 }
