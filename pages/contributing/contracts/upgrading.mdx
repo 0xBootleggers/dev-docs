@@ -1,0 +1,44 @@
+# UPGRADING DAO CONTRACTS
+
+**WHO**: Contract updates should be diccussed and planned in community calls. Public Haus DAO safes signers will need to execute upgrade transactions.
+
+**HOW OFTEN**: As needed.
+
+## ABOUT
+
+The DAO Summoner facotry contract inheirits Open Zepplin's OwnableUpgradeable and UUPSUpgradeable contracts. The owner of each contract is a gnosis safe on each supported chain.
+
+**Common upgrades**
+
+- The Summoner reference singleton contracts as the templates for the base governance, gnosis safe and token contracts when it deploys new DAOs. The most common upgrades in the past have been changes to the singleton the Summoner references.
+- Adding a salt nonce param to the summon function so the safe address could use createProxyWithNonce and be predicted before summoning.
+
+Owner safes can be found for each summoner with the `owner` function:
+
+- [Mainnet](https://etherscan.io/address/0x7e988A9db2F8597735fc68D21060Daed948a3e8C)
+- [Goerli](https://goerli.etherscan.io/address/0x7e988A9db2F8597735fc68D21060Daed948a3e8C)
+- [Sepolia](https://sepolia.etherscan.io/address/0xB2B3909661552942AE1115E9Fc99dF0BC93d71d0)
+- [Gnosis Chain](https://gnosisscan.io/address/0x7e988A9db2F8597735fc68D21060Daed948a3e8C)
+- [Polygon](https://polygonscan.com/address/0x7e988A9db2F8597735fc68D21060Daed948a3e8C)
+- [Optimism](https://optimistic.etherscan.io/address/0x3E0eAdE343Ddc556a6Cf0f858e4f685ba303ce71)
+- [Arbitrum](https://arbiscan.io/address/0xb08Cc8C343cF6dC20d8cf51Fb2D6C436c6390dAa)
+- [Base](https://basescan.org/address/0x97Aaa5be8B38795245f1c38A883B44cccdfB3E11)
+
+## HOW TO
+
+1. Make code updates
+
+- Links to the contract repos can be found in the [contract section](/pages/contracts.mdx).
+
+2. Deploy new singletons related to the changes made to all supported networks.
+
+3. Create the multisig transaction to upgrade the factory
+
+- Use Safe transaction Builder upgradeTo use new upgraded deployment address
+- Have other signers audit and verify before execution
+
+4. Confirm contract upgrade has changes and is verified on explorer
+
+5. Update documentation
+
+- Addresses in github and these docs.
