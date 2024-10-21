@@ -1,13 +1,13 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { useConfig, DocsThemeConfig } from 'nextra-theme-docs';
+import React from "react";
+import { useRouter } from "next/router";
+import { useConfig, DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
   head: () => {
     const { asPath, defaultLocale, locale } = useRouter();
     const { frontMatter } = useConfig();
     const url =
-      'https://docs.daohaus.club/' +
+      "https://docs.daohaus.club/" +
       (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
 
     return (
@@ -15,13 +15,13 @@ const config: DocsThemeConfig = {
         <meta property="og:url" content={url} />
         <meta
           property="og:title"
-          content={frontMatter.title || 'DAOhaus Developer Docs'}
+          content={frontMatter.title || "DAOhaus Developer Docs"}
         />
         <meta
           property="og:description"
           content={
             frontMatter.description ||
-            'The Protocol for Purpose-Driven Governance'
+            "The Protocol for Purpose-Driven Governance"
           }
         />
         <meta property="og:type" content="website" />
@@ -183,38 +183,38 @@ const config: DocsThemeConfig = {
 
       <span
         className="manofa-text"
-        style={{ marginLeft: '.5em', fontWeight: 800 }}
+        style={{ marginLeft: ".5em", fontWeight: 800 }}
       >
         Developer Docs
       </span>
     </>
   ),
   primaryHue: 337,
-  faviconGlyph: '🏰',
+  faviconGlyph: "🏰",
   nextThemes: {
-    defaultTheme: 'dark',
+    defaultTheme: "dark",
   },
   project: {
-    link: 'https://github.com/HausDAO/dev-docs/',
+    link: "https://github.com/HausDAO/dev-docs/",
   },
   chat: {
-    link: 'https://discord.gg/daohaus',
+    link: "https://discord.gg/jJ523Cp6",
   },
-  docsRepositoryBase: 'https://github.com/HausDAO/dev-docs',
+  docsRepositoryBase: "https://github.com/HausDAO/dev-docs",
   sidebar: {
     defaultMenuCollapseLevel: 1,
   },
   search: {
-    placeholder: 'Search',
+    placeholder: "Search",
   },
   toc: {
-    title: 'In This Chapter',
+    title: "In This Chapter",
   },
   editLink: {
-    text: 'Edit Page',
+    text: "Edit Page",
   },
   feedback: {
-    content: 'Provide Feedback',
+    content: "Provide Feedback",
   },
   footer: {
     text: <span className="manofa-text">DAOhaus Developer Docs</span>,
